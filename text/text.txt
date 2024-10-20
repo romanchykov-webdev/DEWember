@@ -14,3 +14,9 @@ npx expo install @expo-google-fonts/inter expo-font expo-splash-screen
 
 //install google font amatic-sc
 npx expo install @expo-google-fonts/amatic-sc
+
+//expo router
+npx expo install expo-router react-native-safe-area-context react-native-screens expo-linking expo-constants expo-status-bar
+
+/for web
+npx expo install react-native-web react-dom

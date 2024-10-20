@@ -1,6 +1,6 @@
 import {StatusBar} from 'expo-status-bar';
 import {StyleSheet, Text, View, FlatList, ActivityIndicator} from 'react-native';
-import DayListItem from "./src/components/core/DayListItem";
+import DayListItem from "../../src/components/core/DayListItem";
 import {Inter_900Black, useFonts} from '@expo-google-fonts/inter';
 import {useEffect} from "react";
 import * as SplashScreen from 'expo-splash-screen';
@@ -12,9 +12,7 @@ const days = [...Array(24)].map((val, index) => index + 1)
 // [...Array(24)] :Создает новый массив с длиной 24, но без значений (пустой).
 // .map((val, index) => index+1) Мы берём индекс каждого элемента и прибавляем к нему 1 (чтобы получить числа от 1 до 24).
 
-export default function App() {
-
-
+export default function HomeScreen() {
 
     // add google fonts
     const [loaded, error] = useFonts({
