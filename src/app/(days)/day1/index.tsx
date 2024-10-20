@@ -7,7 +7,7 @@ const DayDetailsScreen = () => {
   return (
     <View >
         <Stack.Screen options={{title:'Day 1'}}/>
-        <Text>DayDetailsScreen 1 works!</Text>
+        <Text style={{fontFamily:'AmaticBold',fontSize:70}}>DayDetailsScreen 1 works!</Text>
           <Pressable onPress={()=>router.back()}>
               <Text>go to back</Text>
           </Pressable>
