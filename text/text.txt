@@ -1,0 +1,16 @@
+npx create-expo-app@latest DEWember -t
+
+         Choose a template: › Blank (TypeScript)
+
+         npm start
+
+         //?????   npm install typescript@~5.3.3
+
+         --- c      for clear to log terminal
+
+for google fonts
+npx expo install expo-font @expo-google-fonts/inter
+npx expo install @expo-google-fonts/inter expo-font expo-splash-screen
+
+//install google font amatic-sc
+npx expo install @expo-google-fonts/amatic-sc
