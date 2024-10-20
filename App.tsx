@@ -1,22 +1,49 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {StatusBar} from 'expo-status-bar';
+import {StyleSheet, Text, View, FlatList} from 'react-native';
+import DayListItem from "./src/components/core/DayListItem";
 
 export default function App() {
 
-  console.log('hello')
-  return (
-    <View style={styles.container}>
-      <Text>hello</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    const days = [...Array(24)].map((val, index) => index + 1)
+    // [...Array(24)] :Создает новый массив с длиной 24, но без значений (пустой).
+    // .map((val, index) => index+1) Мы берём индекс каждого элемента и прибавляем к нему 1 (чтобы получить числа от 1 до 24).
+
+    // console.log('hello')
+    return (
+        <View style={styles.container}>
+            <FlatList
+                data={days}
+                numColumns={2}
+                contentContainerStyle={styles.content}
+                columnWrapperStyle={styles.column}
+                renderItem={({item}) => (
+                    <DayListItem day={item} />
+                )}
+            />
+
+
+            <StatusBar style="auto"/>
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        // alignItems: 'center',
+        // justifyContent: 'center',
+        //
+        // gap: 10,
+
+    },
+    content: {
+        // backgroundColor: 'red',
+        gap: 10,
+        padding: 10,
+    },
+    column: {
+        gap: 10,
+    },
+
 });
