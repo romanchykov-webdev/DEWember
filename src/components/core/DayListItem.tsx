@@ -7,10 +7,21 @@ type DayListItemProps = {
 }
 
 const DayListItem = ({day}: DayListItemProps) => {
+
+    const lessen=['dey1','animated Screen','Markdown']
     return (
         <Link href={`/(days)/day${day}`} asChild>
         <Pressable style={styles.box}>
             <Text style={styles.text}>{day}</Text>
+
+                {
+                    lessen.map((item, index) => (
+                        <Text style={styles.description}>
+                            { day === index+1 &&item}
+                        </Text>
+                    ))
+                }
+
         </Pressable>
         </Link>
     );
@@ -34,6 +45,13 @@ const styles = StyleSheet.create({
     text: {
         color: '#9b4521',
         fontSize: 70,
+        fontFamily: 'AmaticBold',
+    },
+    description:{
+        position:"absolute",
+        bottom:20,
+        fontSize:16,
+        letterSpacing:2,
         fontFamily: 'AmaticBold',
     }
 })

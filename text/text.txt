@@ -23,3 +23,6 @@ npx expo install react-native-web react-dom
 
 for gest
 npx expo install react-native-gesture-handler
+
+for markdown
+npm install react-native-markdown-display -- --legacy-peer-deps
