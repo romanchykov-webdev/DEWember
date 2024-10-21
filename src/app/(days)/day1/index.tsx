@@ -6,7 +6,7 @@ import {Stack} from "expo-router";
 const DayDetailsScreen = () => {
   return (
     <View >
-        <Stack.Screen options={{title:'Day 1'}}/>
+        <Stack.Screen options={{title:'Day 1: Onboarding'}}/>
         <Text style={{fontFamily:'AmaticBold',fontSize:70}}>DayDetailsScreen 1 works!</Text>
           <Pressable onPress={()=>router.back()}>
               <Text>go to back</Text>
