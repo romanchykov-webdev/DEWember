@@ -1,12 +1,12 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useState} from 'react';
 import {View, Text, StyleSheet, SafeAreaView, Pressable} from 'react-native';
 import {router, Stack} from "expo-router"
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import {StatusBar} from "expo-status-bar";
 
 // for gesture
-import {Gesture, GestureDetector, Directions, GestureHandlerRootView} from 'react-native-gesture-handler';
-import Animated, {FadeIn,Easing, FadeInRight, FadeInLeft, FadeInDown, FadeInUp, FadeOut} from 'react-native-reanimated';
+import {Gesture, GestureDetector, Directions, } from 'react-native-gesture-handler';
+import Animated, {FadeIn,FadeInLeft, FadeInDown, FadeInUp, FadeOut} from 'react-native-reanimated';
 
 
 const onboardingSteps = [
@@ -63,7 +63,7 @@ const OnboardingScreen = () => {
     }
 
     const swipe = Gesture.Simultaneous(
-        Gesture.Fling().direction(Directions.LEFT).onEnd(onContinue),
+        Gesture.Fling().direction(Directions.LEFT).onEnd(onForwardSwipe),
         Gesture.Fling().direction(Directions.RIGHT).onEnd(onBackSwipe),
     )
 
