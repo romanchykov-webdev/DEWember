@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, SafeAreaView, Pressable} from 'react-native';
-import {Link, router, Stack} from "expo-router"
+import {router, Stack} from "expo-router"
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import {StatusBar} from "expo-status-bar";
+
+// for gesture
+import {Gesture, GestureDetector, Directions, GestureHandlerRootView} from 'react-native-gesture-handler';
+import Animated, {useSharedValue, useAnimatedStyle} from 'react-native-reanimated';
 
 
 const onboardingSteps = [
@@ -45,56 +49,77 @@ const OnboardingScreen = () => {
         console.log('lastscreen')
         router.back()
     }
+    const onForwardSwipe = () => {
+        onContinue()
+    }
+    const onBackSwipe = () => {
+        // console.log('swipe')
+        setScreenIndex(screenIndex - 1)
+    }
+
+    const swipe = Gesture.Simultaneous(
+        Gesture.Fling().direction(Directions.LEFT).onEnd(onContinue),
+        Gesture.Fling().direction(Directions.RIGHT).onEnd(onBackSwipe),
+    )
+
 
     return (
-        <SafeAreaView style={styles.page}>
-            <Stack.Screen options={{headerShown: false}}/>
-            <StatusBar style={'dark'}/>
+        <GestureDetector gesture={swipe}>
 
-            <View style={styles.pageContent}>
+            <SafeAreaView style={styles.page}>
+                <Stack.Screen options={{headerShown: false}}/>
+                <StatusBar style="light"/>
 
-                <FontAwesome5 style={styles.image} name={data.icons} size={100} color="#CEF202"/>
 
-                <View style={styles.footer}>
-                    <Text style={styles.title}>{data.title}</Text>
-                    <Text style={styles.description}>
-                        {data.descriptions}
-                    </Text>
+                <View style={styles.pageContent}>
 
-                    <View style={styles.wrapperStep}>
+                    <FontAwesome5 style={styles.image} name={data.icons} size={100} color="#CEF202"/>
 
-                        {
-                            onboardingSteps.map((item, index) => (
-                                <View key={index}
-                                      style={[
-                                          styles.step,
-                                          {width: index === screenIndex ? 50 : 20}
-                                      ]}
-                                ></View>
-                            ))
-                        }
+                    <View style={styles.footer}>
+                        <Text style={styles.title}>{data.title}</Text>
+                        <Text style={styles.description}>
+                            {data.descriptions}
+                        </Text>
 
+                        <View style={styles.wrapperStep}>
+
+                            {
+                                onboardingSteps.map((item, index) => (
+                                    <View
+
+                                        key={index}
+                                        style={[
+                                            styles.step,
+                                            {width: index === screenIndex ? 50 : 20}
+                                        ]}
+                                    ></View>
+                                ))
+                            }
+
+
+                        </View>
+
+                        {/*    buttons  */}
+                        <View style={styles.wrapperButtons}>
+
+                            <Text
+                                onPress={endOnboarding}
+                                style={[styles.buttonText]}>Skip</Text>
+
+                            <Pressable
+                                onPress={onContinue}
+                                style={styles.button}>
+                                <Text style={styles.buttonText}>Continue</Text>
+                            </Pressable>
+                        </View>
 
                     </View>
-
-                    {/*    buttons  */}
-                    <View style={styles.wrapperButtons}>
-
-                        <Text
-                            onPress={endOnboarding}
-                            style={[styles.buttonText]}>Skip</Text>
-
-                        <Pressable
-                            onPress={onContinue}
-                            style={styles.button}>
-                            <Text style={styles.buttonText}>Continue</Text>
-                        </Pressable>
-                    </View>
-
                 </View>
-            </View>
 
-        </SafeAreaView>
+
+            </SafeAreaView>
+
+        </GestureDetector>
     );
 };
 
