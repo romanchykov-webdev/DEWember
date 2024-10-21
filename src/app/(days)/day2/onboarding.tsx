@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {View, Text, StyleSheet, SafeAreaView, Pressable} from 'react-native';
 import {router, Stack} from "expo-router"
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
@@ -6,7 +6,7 @@ import {StatusBar} from "expo-status-bar";
 
 // for gesture
 import {Gesture, GestureDetector, Directions, GestureHandlerRootView} from 'react-native-gesture-handler';
-import Animated, {useSharedValue, useAnimatedStyle} from 'react-native-reanimated';
+import Animated, {FadeIn,Easing, FadeInRight, FadeInLeft, FadeInDown, FadeInUp, FadeOut} from 'react-native-reanimated';
 
 
 const onboardingSteps = [
@@ -21,7 +21,7 @@ const onboardingSteps = [
         descriptions: 'Learn by building 24 projects wits React Native and Expo ',
     },
     {
-        icons: 'people-arrows',
+        icons: 'book-reader',
         title: 'Education for Children ',
         descriptions: 'Contribute to the fundraiser "Education for Children" to help Save Children in effort of providing education to every children ',
     },
@@ -33,7 +33,7 @@ const OnboardingScreen = () => {
     const data = onboardingSteps[screenIndex];
 
     const onContinue = () => {
-        console.log('continue')
+        // console.log('continue')
         const isLastScreen = screenIndex === onboardingSteps.length - 1
 
         if (isLastScreen) {
@@ -54,7 +54,12 @@ const OnboardingScreen = () => {
     }
     const onBackSwipe = () => {
         // console.log('swipe')
-        setScreenIndex(screenIndex - 1)
+        if(screenIndex===0){
+            setScreenIndex(0)
+        }else{
+
+            setScreenIndex(screenIndex - 1)
+        }
     }
 
     const swipe = Gesture.Simultaneous(
@@ -63,36 +68,61 @@ const OnboardingScreen = () => {
     )
 
 
+
+    // animation step elements
+
     return (
-        <GestureDetector gesture={swipe}>
-
-            <SafeAreaView style={styles.page}>
-                <Stack.Screen options={{headerShown: false}}/>
-                <StatusBar style="light"/>
 
 
-                <View style={styles.pageContent}>
+        <SafeAreaView style={styles.page}>
+            <Stack.Screen options={{headerShown: false}}/>
+            <StatusBar style="light"/>
 
-                    <FontAwesome5 style={styles.image} name={data.icons} size={100} color="#CEF202"/>
+            <GestureDetector gesture={swipe}>
+                <Animated.View
+                    entering={FadeIn}
+                    exiting={FadeOut}
+                    key={screenIndex}
+
+                    style={[styles.pageContent, {backgroundColor: screenIndex === 1 ? 'red' : screenIndex === 2 ? 'green' : 'defaultColor'}]}
+
+                >
+
+                    <Animated.View
+                        entering={FadeInDown.delay(100).springify()}
+                        key={screenIndex}
+                    >
+
+                        <FontAwesome5 style={styles.image} name={data.icons} size={100} color="#CEF202"/>
+                    </Animated.View>
 
                     <View style={styles.footer}>
-                        <Text style={styles.title}>{data.title}</Text>
-                        <Text style={styles.description}>
+                        <Animated.Text
+                            entering={FadeInUp.duration(1000)}
+                            style={styles.title}>{data.title}
+                        </Animated.Text>
+                        <Animated.Text
+                            entering={FadeInLeft.delay(350).springify()}
+                            style={styles.description}>
                             {data.descriptions}
-                        </Text>
+                        </Animated.Text>
 
                         <View style={styles.wrapperStep}>
 
                             {
                                 onboardingSteps.map((item, index) => (
-                                    <View
+                                    <Animated.View
+                                        entering={FadeIn.delay(50).springify()}
+                                        // exiting={FadeOut.delay(50).springify()}
+
 
                                         key={index}
                                         style={[
                                             styles.step,
                                             {width: index === screenIndex ? 50 : 20}
                                         ]}
-                                    ></View>
+                                    >
+                                    </Animated.View>
                                 ))
                             }
 
@@ -114,12 +144,12 @@ const OnboardingScreen = () => {
                         </View>
 
                     </View>
-                </View>
+                </Animated.View>
+            </GestureDetector>
+
+        </SafeAreaView>
 
 
-            </SafeAreaView>
-
-        </GestureDetector>
     );
 };
 
