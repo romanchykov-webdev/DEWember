@@ -8,7 +8,7 @@ type DayListItemProps = {
 
 const DayListItem = ({day}: DayListItemProps) => {
 
-    const lessen=['dey1','animated Screen','Markdown']
+    const lessen=['dey1','animated Screen','Markdown','Splash Screen','Map AIRBNB']
     return (
         <Link href={`/(days)/day${day}`} asChild>
         <Pressable style={styles.box}>
@@ -16,7 +16,7 @@ const DayListItem = ({day}: DayListItemProps) => {
 
                 {
                     lessen.map((item, index) => (
-                        <Text style={styles.description}>
+                        <Text key={index} style={styles.description}>
                             { day === index+1 &&item}
                         </Text>
                     ))

@@ -24,5 +24,13 @@ npx expo install react-native-web react-dom
 for gest
 npx expo install react-native-gesture-handler
 
+day3
 for markdown
 npm install react-native-markdown-display -- --legacy-peer-deps
+npm i react-native-markdown-display
+
+day4
+lottie for animation
+npx expo install lottie-react-native
+
+npm install @react-native/metro-config
