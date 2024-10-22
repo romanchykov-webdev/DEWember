@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "latitude": 37.7749,
+    "longitude": -122.4194,
+    "price": 120,
+    "title": "Cozy Apartment in Downtown SF",
+    "numberOfStars": 4,
+    "rating": 4.5,
+    "image": "https://media.istockphoto.com/id/1929345158/it/foto/modern-apartment-with-large-windows.jpg?s=1024x1024&w=is&k=20&c=7ibguAaE1Jwu5tL9VyM4Ez3lh-0X1216Dg61Aa05oq8="
+  },
+  {
+    "id": 2,
+    "latitude": 37.7809,
+    "longitude": -122.4249,
+    "price": 150,
+    "title": "Modern Studio near Union Square",
+    "numberOfStars": 5,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1502672023488-70e25813eb80?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": 3,
+    "latitude": 37.7689,
+    "longitude": -122.4292,
+    "price": 95,
+    "title": "Charming Victorian Home",
+    "numberOfStars": 3,
+    "rating": 4.1,
+    "image": "https://images.unsplash.com/photo-1556020685-ae41abfc9365?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGFwYXJ0bWVudHxlbnwwfHwwfHx8MA%3D%3D"
+  },
+  {
+    "id": 4,
+    "latitude": 37.7699,
+    "longitude": -122.4499,
+    "price": 180,
+    "title": "Luxury Condo with City Views",
+    "numberOfStars": 5,
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-1531835551805-16d864c8d311?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fGFwYXJ0bWVudHxlbnwwfHwwfHx8MA%3D%3D"
+  },
+  {
+    "id": 5,
+    "latitude": 37.7820,
+    "longitude": -122.4310,
+    "price": 110,
+    "title": "Quiet Apartment in the Mission",
+    "numberOfStars": 4,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1529408632839-a54952c491e5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  }
+]

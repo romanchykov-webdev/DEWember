@@ -34,3 +34,7 @@ lottie for animation
 npx expo install lottie-react-native
 
 npm install @react-native/metro-config
+
+day 5
+map
+npx expo install react-native-maps
