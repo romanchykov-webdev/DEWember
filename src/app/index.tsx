@@ -19,7 +19,7 @@ export default function HomeScreen() {
                 contentContainerStyle={styles.content}
                 columnWrapperStyle={styles.column}
                 renderItem={({item}) => (
-                    <DayListItem day={item}/>
+                    <DayListItem day={item} />
                 )}
             />
 

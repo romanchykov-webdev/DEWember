@@ -1,15 +1,18 @@
 import {Stack} from "expo-router";
 import {Inter_900Black, Inter_700Bold, Inter_600SemiBold, Inter_400Regular, useFonts} from "@expo-google-fonts/inter";
 import {AmaticSC_400Regular, AmaticSC_700Bold} from "@expo-google-fonts/amatic-sc";
-import {useEffect} from "react";
-import * as SplashScreen from "expo-splash-screen";
+import {useEffect, useState} from "react";
 
-import {Gesture, GestureDetector, GestureHandlerRootView} from 'react-native-gesture-handler';
+import {Gesture,  GestureHandlerRootView} from 'react-native-gesture-handler';
+import AnimatedSplashScreen from "@components/day4/animatedSplashScreen";
+import Animated, { FadeIn} from 'react-native-reanimated'
 
-
-SplashScreen.preventAutoHideAsync()
+// SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
+    const [appReady, setAppReady] = useState(false)
+    const [splashAnimationFinished, setSplashAnimationFinished] = useState(false)
+
     const tap = Gesture.Tap();
 
 
@@ -24,20 +27,37 @@ export default function RootLayout() {
     })
     useEffect(() => {
         if (loaded || error) {
-            SplashScreen.hideAsync();
+            // SplashScreen.hideAsync();
+            // setTimeout(()=>{
+            //
+            // },3000)
+            setAppReady(true)
+
         }
     }, [loaded, error]);
 
-    if (!loaded && !error) {
-        return null;
-    }
-    // add google fonts
 
-    // console.log('hello')
+    const showSplashScreen = !appReady || !splashAnimationFinished
+
+
+    if (showSplashScreen) {
+        return (
+            <AnimatedSplashScreen onAnimationFinish={(isCanceled) => {
+                if (!isCanceled) {
+                    {
+                        // console.log('Finished Animation',isCanceled)
+                        setSplashAnimationFinished(true)
+                    }
+                }
+            }}/>
+        )
+    }
 
     return (
         <GestureHandlerRootView style={{flex: 1}}>
 
+
+            <Animated.View style={{flex: 1}} entering={FadeIn}>
                 <Stack
                     screenOptions={{}}
                 >
@@ -46,6 +66,9 @@ export default function RootLayout() {
                         options={{title: "DEVember"}}
                     />
                 </Stack>
+            </Animated.View>
+
+
         </GestureHandlerRootView>
 
     )
