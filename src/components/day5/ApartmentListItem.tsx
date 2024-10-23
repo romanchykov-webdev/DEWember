@@ -1,32 +1,25 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, ViewStyle} from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import apartment from "@assets/data/day5/apartment.json"
 
-interface ApartmentType {
-    id: number;
-    latitude: number;
-    longitude: number;
-    price: number;
-    title: string;
-    numberOfStars: number;
-    rating: number;
-    image: string;
+type ApartmentListItem={
+    // apartment:any,
+    apartment:(typeof apartment[0]),
+    containerStyle?:ViewStyle,
 }
 
-interface MarkerComponentProps {
-    apartment: ApartmentType;
-}
-
-const ApartmentListItem :React.FC<MarkerComponentProps>= ({apartment}) => {
+const ApartmentListItem = ({apartment,containerStyle={}}:ApartmentListItem) => {
+    // console.log('apartment',JSON.stringify(apartment,null ,2));
     return (
-        <View style={styles.wrapperApart}>
+        <View style={[styles.wrapperApart,containerStyle]}>
             <Image
                 source={{uri: apartment.image}}
                 style={styles.img}
                 resizeMode="cover"
             />
             <View style={styles.wrapDesc}>
-                <Text style={styles.title}>{apartment.title}f gg dffg</Text>
+                <Text style={styles.title}>{apartment.title}</Text>
                 <Text>${apartment.price}</Text>
 
                 <View style={{flexDirection:'row'}}>
@@ -46,11 +39,8 @@ const ApartmentListItem :React.FC<MarkerComponentProps>= ({apartment}) => {
 const styles = StyleSheet.create({
     wrapperApart: {
         backgroundColor: 'white',
-        position: "absolute",
         flexDirection:'row',
-        bottom: 50,
-        left: 10,
-        right: 10,
+
         // padding: 10,
         borderRadius: 20,
         overflow:'hidden'

@@ -1,37 +1,32 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, ViewStyle} from 'react-native';
 
-import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {Marker, PROVIDER_GOOGLE,MarkerPressEvent} from 'react-native-maps';
 
 
-interface ApartmentType {
-    id: number;
-    latitude: number;
-    longitude: number;
-    price: number;
-    title: string;
-    numberOfStars: number;
-    rating: number;
-    image: string;
+import apartment from "@assets/data/day5/apartment.json"
+
+type ApartmentListItem={
+    // apartment:any,
+    apartment:(typeof apartment[0]),
+    containerStyle?:ViewStyle,
+    onPressss: (event: MarkerPressEvent) => void,
+    selectedApartment:(typeof apartment[0]),
 }
 
-interface MarkerComponentProps {
-    apartment: ApartmentType;
-}
-
-const MarkerComponent: React.FC<MarkerComponentProps> = ({apartment,onPressss,selectedApartment }) => {
+const MarkerComponent= ({apartment,onPressss,selectedApartment }:ApartmentListItem) => {
     return (
         <Marker
             onPress={onPressss}
             coordinate={{
-            latitude: apartment.latitude,
-            longitude: apartment.longitude,
+            latitude: apartment?.latitude,
+            longitude: apartment?.longitude,
         }}
                 // title={apartment.title}
                 // description="description"
         >
             <View style={{
-                backgroundColor: selectedApartment.id===apartment.id ? 'red':'white',
+                backgroundColor: selectedApartment?.id===apartment?.id ? 'red':'white',
                 padding:5,
                 paddingHorizontal:8,
                 borderWidth:1,
@@ -39,7 +34,7 @@ const MarkerComponent: React.FC<MarkerComponentProps> = ({apartment,onPressss,se
                 borderRadius:20,
             }}>
                 <Text style={{fontFamily:'InterBold9'}}>
-                   $ {apartment.price}
+                   $ {apartment?.price}
                 </Text>
             </View>
         </Marker>
