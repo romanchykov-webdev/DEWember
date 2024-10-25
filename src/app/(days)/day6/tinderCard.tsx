@@ -128,7 +128,7 @@ const TinderCard = ({
                 {
                     yesNo !== null
                         ? (<View style={[styles.yesNo, {left: yesNo &&  0}]}>
-                            <Text style={styles.yesNoText}>{yesNo ? 'Yes' : 'No'}</Text>
+                            <Text style={styles.yesNoText}>{yesNo ? 'Yes' : 'Noo'}</Text>
                         </View>)
                         : null
                 }
