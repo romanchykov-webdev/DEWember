@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
 
@@ -24,7 +24,8 @@ type TinderCard = {
     numOfCards: number;
     curIndex: number;
     activeIndex: SharedValue<number>;
-    onResponse:(a:boolean)=>void
+    onResponse: (a: boolean) => void;
+    yesNo: boolean;
 }
 
 const TinderCard = ({
@@ -33,13 +34,11 @@ const TinderCard = ({
                         curIndex,
                         activeIndex,
                         onResponse,
+                        yesNo
                     }: TinderCard) => {
 
 
-
     const translationX = useSharedValue(0)
-
-
 
 
 // xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -52,6 +51,7 @@ const TinderCard = ({
                 [0, 500],
                 [curIndex, curIndex + 0.8]
             );
+            runOnJS(onResponse)(event.velocityX > 0);
         })
         .onEnd((event) => {
             if (Math.abs(event.velocityX) > 400) {
@@ -106,35 +106,44 @@ const TinderCard = ({
 
     return (
         <GestureDetector gesture={gesture}>
-        <Animated.View style={[
-            styles.card,
-            animatedCard,
-            {
-                zIndex: numOfCards - curIndex,
-                // opacity: 0.5,
-                // opacity: 1 - curIndex * 0.2,
-                // transform: [
-                //     {translateY: -curIndex * 30},
-                //     // {scale: 1 - curIndex * 0.05}
-                // ]
-            }
-        ]}
-        >
-            <Image
-                style={[StyleSheet.absoluteFillObject, styles.image]}
-                source={{uri: user.image}}
-            />
+            <Animated.View style={[
+                styles.card,
+                animatedCard,
+                {
+                    zIndex: numOfCards - curIndex,
+                    // opacity: 0.5,
+                    // opacity: 1 - curIndex * 0.2,
+                    // transform: [
+                    //     {translateY: -curIndex * 30},
+                    //     // {scale: 1 - curIndex * 0.05}
+                    // ]
+                }
+            ]}
+            >
+                <Image
+                    style={[StyleSheet.absoluteFillObject, styles.image]}
+                    source={{uri: user.image}}
+                />
 
-            <LinearGradient
-                // Background Linear Gradient
-                colors={['transparent', 'rgba(0,0,0,0.8)']}
-                style={[StyleSheet.absoluteFillObject, styles.background]}
-            />
+                {
+                    yesNo !== null
+                        ? (<View style={[styles.yesNo, {left: yesNo &&  0}]}>
+                            <Text style={styles.yesNoText}>{yesNo ? 'Yes' : 'No'}</Text>
+                        </View>)
+                        : null
+                }
 
-            <View style={styles.footer}>
-                <Text style={styles.name}>{user.name}</Text>
-            </View>
-        </Animated.View>
+
+                <LinearGradient
+                    // Background Linear Gradient
+                    colors={['transparent', 'rgba(0,0,0,0.8)']}
+                    style={[StyleSheet.absoluteFillObject, styles.background]}
+                />
+
+                <View style={styles.footer}>
+                    <Text style={styles.name}>{user.name}</Text>
+                </View>
+            </Animated.View>
         </GestureDetector>
     );
 };
@@ -162,6 +171,21 @@ const styles = StyleSheet.create({
     },
     image: {
         borderRadius: 15,
+    },
+    yesNo: {
+        position: 'absolute',
+        top: 50,
+        right: 0,
+        width: 100,
+        borderWidth: 2,
+        borderColor: 'white',
+        padding: 10,
+    },
+    yesNoText: {
+        color: 'red',
+        fontSize: 24,
+        fontFamily: 'AmaticBold',
+        textAlign: 'center',
     },
     background: {
         top: '50%',
