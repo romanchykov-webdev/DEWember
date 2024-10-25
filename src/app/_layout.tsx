@@ -36,22 +36,22 @@ export default function RootLayout() {
         }
     }, [loaded, error]);
 
-
-    const showSplashScreen = !appReady || !splashAnimationFinished
-
-
-    if (showSplashScreen) {
-        return (
-            <AnimatedSplashScreen onAnimationFinish={(isCanceled) => {
-                if (!isCanceled) {
-                    {
-                        // console.log('Finished Animation',isCanceled)
-                        setSplashAnimationFinished(true)
-                    }
-                }
-            }}/>
-        )
-    }
+    //
+    // const showSplashScreen = !appReady || !splashAnimationFinished
+    //
+    //
+    // if (showSplashScreen) {
+    //     return (
+    //         <AnimatedSplashScreen onAnimationFinish={(isCanceled) => {
+    //             if (!isCanceled) {
+    //                 {
+    //                     // console.log('Finished Animation',isCanceled)
+    //                     setSplashAnimationFinished(true)
+    //                 }
+    //             }
+    //         }}/>
+    //     )
+    // }
 
     return (
         <GestureHandlerRootView style={{flex: 1}}>

@@ -8,7 +8,7 @@ type DayListItemProps = {
 
 const DayListItem = ({day}: DayListItemProps) => {
 
-    const lessen=['dey1','animated Screen','Markdown','Splash Screen','Map AIRBNB']
+    const lessen=['dey1','animated Screen','Markdown','Splash Screen','Map AIRBNB','Swipe animation']
     return (
         <Link href={`/(days)/day${day}`} asChild>
         <Pressable style={styles.box}>

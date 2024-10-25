@@ -41,3 +41,6 @@ npx expo install react-native-maps
 bottom sheet
 npx expo install @gorhom/bottom-sheet@^5
 npx expo install react-native-reanimated react-native-gesture-handler
+
+//for gradient
+npx expo install expo-linear-gradient
