@@ -16,10 +16,12 @@
       "supportsTablet": true
     },
     "android": {
+
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       }
+
     },
     "web": {
       "favicon": "./assets/favicon.png",
@@ -27,13 +29,8 @@
     },
     "plugins": [
       "expo-font",
-      "expo-router",
-      [
-        "expo-location",
-        {
-          "locationAlwaysAndWhenInUsePermission": "Allow Weather to use your location."
-        }
-      ]
+      "expo-router"
+
     ],
     "experiments": {
       "tsconfigPaths": true

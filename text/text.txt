@@ -52,3 +52,9 @@ npm i expo-av
 day 8
 for get location
 npx expo install expo-location
+
+for format data
+npm install dayjs
+
+for blur
+npx expo install expo-blur
